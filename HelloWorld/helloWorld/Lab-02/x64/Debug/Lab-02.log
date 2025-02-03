@@ -1,0 +1,2 @@
+﻿lab03.obj : error LNK2005: main уже определен в lab02.obj
+C:\Users\admin\Documents\уник\лабы по опи\HelloWorld\helloWorld\x64\Debug\Lab-02.exe : fatal error LNK1169: обнаружен многократно определенный символ - один или более
