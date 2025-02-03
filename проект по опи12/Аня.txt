@@ -1,0 +1,100 @@
+ string inp = this.Input.Text;//создаю строку и присваиваем значение того что мы ввели(забрали введенное зн-ние из поля input)
+                string polibish = "ABCDEFGHIJK" +//массив зн-ний(строка символов)
+                                  "LMNOPQRSTUV" +
+                                  "WXYZabcdefg" +
+                                  "hijklmnopqr" +
+                                  "stuvwxyzАБВ" +
+                                  "ГДЕЁЖЗИЙКЛМ" +
+                                  "НОПРСТУФХЦЧ" +
+                                  "ШЩЪЫЬЭЮЯабв" +
+                                  "гдеёжзийклм" +
+                                  "нопрстуфхцч" +
+                                  "шщъыьэюя ";
+                int pos_x = 0, pos_y = 0;//переменные на позиции по x и y в матрице
+                int j = 0;//переменные для поиска позиции в строке polibish
+                string outp = "";//переменная для результата работы шифра
+                string chast = "";//переменная для записи результата работы шифровки одного символа 
+                for(int i = 0; i < inp.Length; i++)
+                {
+                    j = polibish.IndexOf(inp[i]);//поиск символа в строке
+                    if(j == -1)//для символов которых нет в строке(остаются неизмен.)
+                    {
+                        outp += inp[i] + " ";
+                    }
+                    else
+                    {
+                        pos_x = j % 11;//деление с остатком,находим позицию по x
+                        pos_y = j / 11;//деление нацело , находим позицию y
+                        if(pos_x == 10)
+                        {
+                            chast += 'a';
+                        }
+                        else
+                        {
+                            chast += pos_x.ToString();//перевод элемента типа int в строковый тип
+                        }
+                        if (pos_y == 10)
+                        {
+                            chast += 'a';
+                        }
+                        else
+                        {
+                            chast += pos_y.ToString();
+                        }
+                        outp += chast + " ";//для добавления каждого символа и пробела между ними
+                        chast = "";//очистка переменной
+                    }
+                }
+                this.Output.Text = outp;//помещаем в окно вывода наш результат
+
+
+
+
+
+
+
+string inp = this.Input.Text;
+                string polibish = "ABCDEFGHIJK" +
+                                  "LMNOPQRSTUV" +
+                                  "WXYZabcdefg" +
+                                  "hijklmnopqr" +
+                                  "stuvwxyzАБВ" +
+                                  "ГДЕЁЖЗИЙКЛМ" +
+                                  "НОПРСТУФХЦЧ" +
+                                  "ШЩЪЫЬЭЮЯабв" +
+                                  "гдеёжзийклм" +
+                                  "нопрстуфхцч" +
+                                  "шщъыьэюя ";
+                int j = 0;
+                int pos = 0;//для формирования позиции символа после расшифровки
+                string outp = "";//для результата работы 
+                string[] mas = inp.Split(' ');//преобразование введенной строки в массив без пробелов(split-для разделения)
+                int pos_x = 0, pos_y = 0;
+                for(int i = 0; i < mas.Length; i++)
+                {
+                    if(mas[i].Length != 2)//проверка на кол-во цифр в элементе шифровки
+                    {
+                        outp += mas[i];
+                    }
+                    else
+                    {
+                        if(mas[i][0] != 'a')
+                        {
+                            pos_x = int.Parse(mas[i][0].ToString());//перевод символа в число int
+                        }
+                        else
+                        {
+                            pos_x = 10;
+                        }
+                        if (mas[i][1] != 'a')
+                        {
+                            pos_y = int.Parse(mas[i][1].ToString());
+                        }
+                        else
+                        {
+                            pos_y = 10;
+                        }
+                        pos = pos_y * 11 + pos_x;//находим позицю в строке
+                        outp += polibish[pos];//поиск элемента в заданной строке
+                    }                }
+                this.Output.Text = outp;//вывод результата
